@@ -85,10 +85,11 @@ router.put('/:id', (req, res) => {
       stock: req.body.stock,
       category_id: req.body.category_id,
       tag_Ids: req.body.tag_Ids
+    },
     where: {
       id: req.params.id,
     },
-  })
+  )
     .then((product) => {
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
