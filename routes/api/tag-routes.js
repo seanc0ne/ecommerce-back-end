@@ -49,7 +49,7 @@ router.get('/:id', (req, res) => {
   })
   .then(dbUserData => {
     if (!dbUserData) {
-      res.status(404).json({ message: 'No tag found with this ID' });
+      res.status(404).json({ message: 'No tag found with this ID.' });
       return;
     }
     res.json(dbUserData);
@@ -77,13 +77,30 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Tag.update(
     {
-      tag_name: 
+      tag_name: req.body.tag_name
+    },
+    {
+      where: {
+        id: req.params.id
+      }
     }
   )
+    .then(dbTagData => {
+      if (!dbTagData) {
+        res.status(404).json({ message: 'No tag found with this ID.' });
+        return;
+      }
+      res.json(dbTagData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
+// delete on tag by its `id` value
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+
 });
 
 module.exports = router;
