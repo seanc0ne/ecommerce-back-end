@@ -10,6 +10,8 @@ router.get('/', async (req, res, next) => {
   res.status(200).json(category);
 });
 
+  // find one category by its `id` value
+  // be sure to include its associated Products
 router.get('/:id', async (req, res, next) => {
   const { limit, skip, By, sdir } = req.query;
 
@@ -24,12 +26,27 @@ router.get('/:id', async (req, res, next) => {
         sort: By
       }
     })
-  // find one category by its `id` value
-  // be sure to include its associated Products
+    .limit(+limit)
+    .skip(+skip)
+    .exec();
+  products.to;
+
+  res.status(200).json(products);
 });
 
-router.post('/', (req, res) => {
   // create a new category
+router.post('/add', async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const category = new Categories({
+      name
+    });
+    await category.save();
+    res.status(200).json(` Success `);
+  } catch (err) {
+    err.statusCode = 422;
+    next(err);
+  }
 });
 
 router.put('/:id', (req, res) => {
