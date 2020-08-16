@@ -125,10 +125,22 @@ router.put('/:id', (req, res) => {
 
   // delete one product by its `id` value
 router.delete('/:id', (req, res) => {
-  const userId = req.user.id;
-  const product = await Products.findById(req.params.id);
-  await Products.deleteOne(product);
-  res.status(200).json('Successful deletion.');
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbProductData => {
+      if (!dbProductData) {
+        res.status(404).json({ message: 'No product found with this ID.' });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
