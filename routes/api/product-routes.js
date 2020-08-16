@@ -86,9 +86,7 @@ router.put('/:id', (req, res) => {
       category_id: req.body.category_id,
       tag_Ids: req.body.tag_Ids
     },
-    where: {
-      id: req.params.id,
-    },
+    {returning: true, where: {id: req.params.id}}
   )
     .then((product) => {
       // find all associated tags from ProductTag
