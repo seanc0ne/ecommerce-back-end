@@ -5,36 +5,58 @@ const { Category, Product } = require('../../models');
 
   // find all categories
   // be sure to include its associated Products
-router.get('/', async (req, res, next) => {
-  const category = await Categories.find();
-  res.status(200).json(category);
+router.get('/', (req, res) => {
+  Category.findAll({
+    attributes: [
+      'id',
+      'category_name'
+    ],
+    include: [
+      {
+        model: Product,
+        attributes: ['product_name']
+      }
+    ]
+  })
+  .then(dbCategoryData => res.json(dbCategoryData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
   // find one category by its `id` value
   // be sure to include its associated Products
-router.get('/:id', async (req, res, next) => {
-  const { limit, skip, By, sdir } = req.query;
-
-  const { id } = req.params;
-
-  const products = await Categories.find ({
-    id: id
-  })
-    .populate({
-      path: 'products',
-      options: {
-        sort: By
+router.get('/:id', (req, res, ) => {
+  CategoryfindOne({
+    attributes: [
+      'id',
+      'category_name'
+    ],
+    where: {
+      id: req.params.id
+    },
+    include: [
+      {
+        model: Product,
+        attributes: ['product_name']
       }
-    })
-    .limit(+limit)
-    .skip(+skip)
-    .exec();
-  products.to;
-
-  res.status(200).json(products);
+    ]
+  })
+  .then(dbCategoryData => {
+    if (!dbCategoryData) {
+      res.status(404).json({ 'No category found with this ID.' });
+      return;
+    }
+    res.json(dbCategoryData)
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
-  // create a new category
+// create a new category
 router.post('/add', async (req, res, next) => {
   try {
     const { name } = req.body;
