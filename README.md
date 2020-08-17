@@ -12,15 +12,21 @@ Welcome to the E-commerce Back End project: A back end for an e-commerce website
 
 Clone or fork this repo if you would like. You will need to create the schema from the MySQL shell by running the following command once you have signed into MySQL on the command line: 
 
+```
 source db/schema.sql
+```
 
 Then you will need to seed the database from the command line by typing the following:
 
+```
 npm run seed
+```
 
 Then you will need to start the application's server by typing the following on the command line:
 
+```
 npm start
+```
 
 ## License
 
