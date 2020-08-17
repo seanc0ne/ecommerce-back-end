@@ -1,25 +1,26 @@
 # E-commerce Back End ![githublicense](https://img.shields.io/badge/license-MIT-blue.svg)
 
-[![ScreenShot](screenshot.png)](https://www.youtube.com/watch?v=GbEgXy0xhdo&feature=youtu.be)
+[![ScreenShot](screenshot1.png)](https://www.youtube.com/watch?v=bGn8jjcgDXo&feature=youtu.be)
 
-[Link to walkthrough video on YouTube](https://www.youtube.com/watch?v=GbEgXy0xhdo&feature=youtu.be)
+[Link to walkthrough video on YouTube](https://www.youtube.com/watch?v=bGn8jjcgDXo&feature=youtu.be)
 
 ## Description
 
-Welcome to Employee Tracker: An application that allows the user to view and manage the departments, roles, and employees in their company so they can organize and plan their business. The app connects to a MySQL database, and the user can add new information to the database. The user can view employees by certain categories. 
-
-## Installation
-
-To install, run: 
-
-```
-npm i
-```
-The app uses the mysql and inquirer packages.
+Welcome to the E-commerce Back End project: A back end for an e-commerce website that uses the latest technologies so that a company can compete with other e-commerce companies. This application uses an Express.js API that's been made to use Sequelize to interact with a MySQL database.
 
 ## Usage
 
-Clone or fork this repo if you would like. You must have node.js installed on your system.
+Clone or fork this repo if you would like. You will need to create the schema from the MySQL shell by running the following command once you have signed into MySQL on the command line: 
+
+source db/schema.sql
+
+Then you will need to seed the database from the command line by typing the following:
+
+npm run seed
+
+Then you will need to start the application's server by typing the following on the command line:
+
+npm start
 
 ## License
 
