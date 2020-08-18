@@ -10,7 +10,15 @@ Welcome to the E-commerce Back End project: A back end for an e-commerce website
 
 ## Usage
 
-Clone or fork this repo if you would like. You will need to create the schema from the MySQL shell by running the following command once you have signed into MySQL on the command line: 
+Clone or fork this repo if you would like. 
+
+Install dependencies by running the following: 
+
+```
+npm i
+```
+
+You will need to create the schema from the MySQL shell by running the following command once you have signed into MySQL on the command line: 
 
 ```
 source db/schema.sql
